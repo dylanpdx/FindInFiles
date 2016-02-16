@@ -1,6 +1,6 @@
-<project name="FindInFiles" default="dist" basedir=".">
+<project name="MyProject" default="dist" basedir=".">
   <description>
-    finds text in files
+    simple example build file
   </description>
   <!-- set global properties for this build -->
   <property name="src" location="src"/>
