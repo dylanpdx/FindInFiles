@@ -20,18 +20,24 @@ public class FindInFiles {
 		File path = new File(givpath);
 		if (path.isDirectory()) {
 			File[] files = path.listFiles();
-			
-			if (files != null){
+
+			if (files != null) {
 				for (int i = 0; i < files.length; i++) { // Error: NullPointer
 					if (files[i].isFile()) { // this line weeds out other
 												// directories/folders
 						// System.out.println(files[i]);
 						filesscanned++;
-						byte[] bytes = Files.readAllBytes(files[i].toPath());
-						String str = new String(bytes, "UTF-8");
-						if (str.contains(what)) {
-							Found.add(files[i]);
+						System.out.println("Scanning " + files[i].toPath());
+						try {
+							byte[] bytes = Files.readAllBytes(files[i].toPath());
+							String str = new String(bytes, "UTF-8");
+							if (str.contains(what)) {
+								Found.add(files[i]);
+							}
+						} catch (Exception Ex) {
+							System.out.println("Error reading the file.");
 						}
+
 					} else {
 						dirsscanned++;
 						search(files[i].toString(), what, display);
